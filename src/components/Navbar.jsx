@@ -39,7 +39,11 @@ export default function Navbar({ sidebarOpen, setSidebarOpen }) {
           {sidebarOpen ? <X size={18} /> : <Menu size={18} />}
         </button>
 
-        <Link to="/" className="flex items-center group hover:opacity-80 transition-opacity">
+        <Link
+          to="/"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="flex items-center group hover:opacity-80 transition-opacity"
+        >
           <Logo height={26} className="dark:text-white text-gray-900" />
         </Link>
       </div>
