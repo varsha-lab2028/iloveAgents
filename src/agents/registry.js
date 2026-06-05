@@ -31,3 +31,5 @@ export function loadAllAgents() {
 
   return cachedAgentsPromise;
 }
+
+export default await loadAllAgents();
