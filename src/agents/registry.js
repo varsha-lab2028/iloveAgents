@@ -27,7 +27,7 @@ export function loadAllAgents() {
     Object.values(modules).map((loader) => loader())
   ).then((entries) => {
     const agents = entries.map((mod) => mod.default).filter(Boolean);
-    
+
     const seenIds = new Set();
     const uniqueAgents = agents.filter((agent) => {
       if (!agent?.id) {
