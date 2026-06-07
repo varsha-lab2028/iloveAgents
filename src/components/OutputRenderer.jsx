@@ -7,15 +7,21 @@ import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import ScorecardOutput from './ScorecardOutput'
 
 function stripMarkdown(text) {
+  if (!text) return ''
   return text
     .replace(/#{1,6}\s+/g, '')
+    .replace(/~~(.*?)~~/g, '$1')
+    .replace(/__(.*?)__/g, '$1')
+    .replace(/_(.*?)_/g, '$1')
     .replace(/\*\*(.*?)\*\*/g, '$1')
     .replace(/\*(.*?)\*/g, '$1')
-    .replace(/`{3}[\s\S]*?`{3}/g, '')
+    .replace(/`{3}[a-z]*\n?([\s\S]*?)`{3}/g, '$1')
     .replace(/`([^`]+)`/g, '$1')
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1')
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
     .replace(/^[-*+]\s+/gm, '')
     .replace(/^\d+\.\s+/gm, '')
+    .replace(/^[-*]\s+\[[ x]\]\s+/gm, '')
     .replace(/^>\s+/gm, '')
     .replace(/---+/g, '')
     .replace(/\n{3,}/g, '\n\n')
